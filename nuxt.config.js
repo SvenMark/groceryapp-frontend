@@ -42,7 +42,9 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
+    '@/plugins/firebase',
+    '@/plugins/repository',
   ],
 
   /*
@@ -57,6 +59,10 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  router: {
+    middleware: 'router-auth'
   },
 
   /*

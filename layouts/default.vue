@@ -1,114 +1,77 @@
 <template>
-  <v-app dark>
+  <v-app
+    v-touch="{left: () => drawer = false,
+              right: () => drawer = true}"
+    v-if="isAuthenticated">
     <v-navigation-drawer
-      v-model="drawer"
       :mini-variant="miniVariant"
-      :clipped="clipped"
+      v-model="drawer"
+      width="200"
+      clipped
       fixed
       app
+      touchless
     >
       <v-list>
         <v-list-tile
           v-for="(item, i) in items"
-          :key="i"
           :to="item.to"
+          :key="i"
           router
           exact
         >
           <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon v-html="item.icon"/>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title v-text="item.title" />
+            <v-list-tile-title v-text="item.title"/>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
-      :clipped-left="clipped"
+      clipped-left
       fixed
       app
+      color="primary"
     >
-      <v-toolbar-side-icon @click="drawer = !drawer" />
+      <v-toolbar-side-icon
+        @click="drawer = !drawer"/>
       <v-btn
+        v-if="!$vuetify.breakpoint.mdAndDown"
         icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>{{ `chevron_${miniVariant ? 'right' : 'left'}` }}</v-icon>
+        @click="miniVariant = !miniVariant">
+        <v-icon>compare_arrows</v-icon>
       </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>menu</v-icon>
-      </v-btn>
+      <v-toolbar-title v-text="title"/>
+      <v-spacer/>
+      <TheProfileMenu/>
     </v-toolbar>
     <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt/>
     </v-content>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-tile @click.native="right = !right">
-          <v-list-tile-action>
-            <v-icon light>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; 2019</span>
-    </v-footer>
+    <v-footer app></v-footer>
   </v-app>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+  import TheProfileMenu from "../components/TheProfileMenu";
+  export default {
+    components: {TheProfileMenu},
+    data() {
+      return {
+        drawer: null,
+        items: [
+          {icon: 'dashboard', title: 'Dashboard', to: '/'}
+        ],
+        miniVariant: false,
+        title: 'Groceryapp'
+      }
+    },
+    computed: {
+      isAuthenticated() {
+        return true;
+      }
     }
   }
-}
 </script>
