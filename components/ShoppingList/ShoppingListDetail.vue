@@ -6,7 +6,7 @@
         solo
         @keydown.enter="create"
       >
-        <v-fade-transition v-slot:append>
+        <v-fade-transition slot="append">
           <v-icon
             v-if="task"
             @click="create"
@@ -68,7 +68,7 @@
                   v-model="task.done"
                   color="info darken-3"
                 >
-                  <template v-slot:label>
+                  <template slot="label">
                     <div
                       :class="task.done && 'grey--text' || 'text--primary'"
                       class="ml-3"
@@ -129,7 +129,7 @@
         this.tasks.push({
           done: false,
           text: this.task
-        })
+        });
 
         this.task = null
       }
