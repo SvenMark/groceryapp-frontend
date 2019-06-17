@@ -62,7 +62,7 @@
             :key="`${i}-divider`"
           ></v-divider>
 
-          <ShoppingListDetailItem :shoppingItem="shoppingItem" :key="shoppingItem.id"/>
+          <ShoppingListDetailItem :id="id" :shoppingItem="shoppingItem" :key="shoppingItem.id" @done="done($event)" @destroy="destroy($event)"/>
         </template>
       </v-slide-y-transition>
     </v-card>
@@ -83,25 +83,9 @@
       shoppingItems: [],
       shoppingItem: null
     }),
-    mounted() {
+    async mounted() {
       const self = this;
-      self.shoppingItems = [
-        {
-          id: 26,
-          description: "first item",
-          done: true
-        },
-        {
-          id: 27,
-          description: "second item",
-          done: false
-        },
-        {
-          id: 28,
-          description: "third item",
-          done: false
-        }
-      ]
+      await self.fetchListItems();
     },
 
     computed: {
@@ -117,13 +101,29 @@
     },
 
     methods: {
-      create() {
-        this.shoppingItems.push({
-          done: false,
-          description: this.shoppingItem
-        });
+      async fetchListItems() {
+        const self = this;
+        self.shoppingItems = await self.$repos.shoppingLists.items(self.id)
+      },
+      async create() {
+
+        const item = await this.$repos.shoppingLists.itemsAdd(this.id, {description: this.shoppingItem});
+        console.log(item);
+        this.shoppingItems.unshift(item);
 
         this.shoppingItem = null
+      },
+      async done(item) {
+        console.log('done');
+        const self = this;
+        await self.$repos.shoppingLists.itemsEdit(self.id, item);
+      },
+      async destroy(item) {
+        console.log('destroy');
+        const self = this;
+        await self.$repos.shoppingLists.itemsDestroy(self.id, item);
+        const index = self.shoppingItems.findIndex(c => c.id === item.id);
+        self.shoppingItems.splice(index, 1);
       }
     }
   }

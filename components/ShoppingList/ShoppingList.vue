@@ -2,7 +2,7 @@
   <v-container grid-list-md>
     <v-layout row wrap>
       <v-flex xs4 v-for="shoppingList in shoppingLists" :key="shoppingList.id">
-        <ShoppingListCard :shopping-list="shoppingList"/>
+        <ShoppingListCard :shopping-list="shoppingList" @destroy="destroyList($event)"/>
       </v-flex>
     </v-layout>
   </v-container>
@@ -20,28 +20,21 @@
         loadingLists: false,
       }
     },
-    mounted() {
+    async mounted() {
       const self = this;
-      self.loadingLists = true;
-      self.shoppingLists = [
-        {
-          id: 8,
-          name: "dfsdf"
-        },
-        {
-          id: 9,
-          name: "new list"
-        },
-        {
-          id: 10,
-          name: "second shopping list"
-        },
-        {
-          id: 11,
-          name: "third shopping list"
-        }
-      ];
-      self.loadingLists = false;
+      await self.fetchShoppingLists();
+    },
+    methods: {
+      async fetchShoppingLists() {
+        const self = this;
+        self.loadingLists = true;
+        self.shoppingLists = await self.$repos.shoppingLists.all();
+        self.loadingLists = false;
+      },
+      destroyList(id) {
+        const index = this.shoppingLists.findIndex(c => c.id === id);
+        this.shoppingLists.splice(index, 1);
+      }
     }
   }
 </script>

@@ -10,7 +10,8 @@ export default function ({app, store, redirect, route}) {
         : ''
     }
     if (user) {
-      store.dispatch('user/fetchUserClaims', user);
+      if (!store.getters['user/isAuthenticated'])
+        store.dispatch('user/fetchUserClaims', user);
       return route.name === 'login' || route.name === 'register'
         ? redirect('/')
         : ''

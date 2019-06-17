@@ -62,7 +62,8 @@
       return {
         drawer: null,
         items: [
-          {icon: 'dashboard', title: 'Dashboard', to: '/'}
+          {icon: 'dashboard', title: 'Dashboard', to: '/'},
+          {icon: 'lists', title: 'Shopping Lists', to: '/shoppinglists/'}
         ],
         miniVariant: false,
         title: 'Groceryapp'

@@ -27,7 +27,6 @@ export const mutations = {
   },
   setToken(state, token) {
     const self = this;
-    console.log('setting token');
     self.$axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
     state.token = token;
   },
