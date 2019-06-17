@@ -2,7 +2,7 @@
   <v-container>
     <v-text-field
       v-model="shoppingItem"
-      label="What do you wanna add to your list?"
+      label="What do you want to add to your list?"
       solo
       @keydown.enter="create"
     >
@@ -15,15 +15,6 @@
         </v-icon>
       </v-fade-transition>
     </v-text-field>
-
-    <h2 class="display-1 success--text pl-3">
-      shoppingItems :&nbsp;
-      <v-fade-transition leave-absolute>
-          <span :key="`shoppingItems-${shoppingItems.length}`">
-            {{ shoppingItems.length }}
-          </span>
-      </v-fade-transition>
-    </h2>
 
     <v-divider class="mt-3"></v-divider>
 
@@ -72,7 +63,7 @@
 <script>
   import ShoppingListDetailItem from "./ShoppingListDetailItem";
   export default {
-    name: 'ShoppingList',
+    name: 'ShoppingListDetail',
     components: {ShoppingListDetailItem},
     props: {
       id: {
@@ -106,7 +97,7 @@
         self.shoppingItems = await self.$repos.shoppingLists.items(self.id)
       },
       async create() {
-
+        if (this.shoppingItem === null) return;
         const item = await this.$repos.shoppingLists.itemsAdd(this.id, {description: this.shoppingItem});
         console.log(item);
         this.shoppingItems.unshift(item);

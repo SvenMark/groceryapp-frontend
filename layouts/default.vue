@@ -50,7 +50,6 @@
     <v-content>
       <nuxt/>
     </v-content>
-    <v-footer app></v-footer>
   </v-app>
 </template>
 
@@ -63,7 +62,7 @@
         drawer: null,
         items: [
           {icon: 'dashboard', title: 'Dashboard', to: '/'},
-          {icon: 'lists', title: 'Shopping Lists', to: '/shoppinglists/'}
+          {icon: 'list', title: 'Shopping Lists', to: '/shoppinglists/'}
         ],
         miniVariant: false,
         title: 'Groceryapp'

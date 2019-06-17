@@ -1,18 +1,20 @@
 <template>
     <v-card>
-      <v-card-title>{{ shoppingList.name }}</v-card-title>
-      <v-card-text>hi this is a shopping list</v-card-text>
+      <v-card-title class="display-1 success--text pl-3">{{ shoppingList.name }}</v-card-title>
+      <v-card-text><ShoppingListDetail :id="shoppingList.id"/></v-card-text>
       <v-card-actions>
         <v-btn @click="goToList">Go to list</v-btn>
-        <v-btn @click="destroy" color="warning">Delete List</v-btn>
+        <v-btn @click="destroy" color="error">Delete List</v-btn>
       </v-card-actions>
     </v-card>
 </template>
 
 <script>
+    import ShoppingListDetail from "./ShoppingListDetail";
     export default {
         name: "ShoppingListCard",
-        props: {
+      components: {ShoppingListDetail},
+      props: {
           shoppingList: {
             required: true,
           }
