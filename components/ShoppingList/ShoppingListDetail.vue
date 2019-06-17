@@ -1,14 +1,14 @@
 <template>
   <v-container>
     <v-text-field
-      v-model="task"
-      label="What are you working on?"
+      v-model="shoppingItem"
+      label="What do you wanna add to your list?"
       solo
       @keydown.enter="create"
     >
       <v-fade-transition slot="append">
         <v-icon
-          v-if="task"
+          v-if="shoppingItem"
           @click="create"
         >
           add_circle
@@ -62,33 +62,7 @@
             :key="`${i}-divider`"
           ></v-divider>
 
-          <v-list-tile :key="`${i}-${shoppingItem.description}`">
-            <v-list-tile-action>
-              <v-checkbox
-                v-model="shoppingItem.done"
-                color="info darken-3"
-              >
-                <template slot="label">
-                  <div
-                    :class="shoppingItem.done && 'grey--text' || 'text--primary'"
-                    class="ml-3"
-                    v-text="shoppingItem.description"
-                  ></div>
-                </template>
-              </v-checkbox>
-            </v-list-tile-action>
-
-            <v-spacer></v-spacer>
-
-            <v-scroll-x-transition>
-              <v-icon
-                v-if="shoppingItem.done"
-                color="success"
-              >
-                check
-              </v-icon>
-            </v-scroll-x-transition>
-          </v-list-tile>
+          <ShoppingListDetailItem :shoppingItem="shoppingItem" :key="shoppingItem.id"/>
         </template>
       </v-slide-y-transition>
     </v-card>
@@ -96,8 +70,10 @@
 </template>
 
 <script>
+  import ShoppingListDetailItem from "./ShoppingListDetailItem";
   export default {
     name: 'ShoppingList',
+    components: {ShoppingListDetailItem},
     props: {
       id: {
         required: true,
@@ -113,7 +89,7 @@
         {
           id: 26,
           description: "first item",
-          done: false
+          done: true
         },
         {
           id: 27,
