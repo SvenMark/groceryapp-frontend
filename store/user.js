@@ -1,3 +1,5 @@
+import axios from '@nuxtjs/axios';
+
 const initialUserState = {
     first_name: 'John',
     last_name: 'Doe',
@@ -5,6 +7,7 @@ const initialUserState = {
 };
 
 export const state = () => ({
+  token: null,
   user: initialUserState,
 });
 
@@ -19,16 +22,28 @@ export const mutations = {
     state.user = user
   },
   removeUser(state) {
-    state.user = initialUserState
+    const self = this;
+    state.user = initialUserState;
+  },
+  setToken(state, token) {
+    const self = this;
+    console.log('setting token');
+    self.$axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    state.token = token;
+  },
+  removeToken(state) {
+    const self = this;
+    state.token = null;
+    self.$axios.defaults.headers.common['Authorization'] = null;
   }
 };
 
 export const actions = {
-    async fetchUserClaims({commit}, user) {
+    fetchUserClaims({commit}, user) {
       user.getIdTokenResult()
         .then((idTokenResult) => {
-            // Confirm the user is an Admin.
             commit('setUser', idTokenResult.claims);
+            commit('setToken', idTokenResult.token);
           }
         )
         .catch((error) => {
@@ -41,5 +56,8 @@ export const actions = {
 export const getters = {
   user(state) {
     return state.user
+  },
+  isAuthenticated(state) {
+    return state.token !== null;
   }
 };

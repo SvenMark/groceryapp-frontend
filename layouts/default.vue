@@ -70,7 +70,7 @@
     },
     computed: {
       isAuthenticated() {
-        return true;
+        return this.$store.getters['user/isAuthenticated'];
       }
     }
   }
