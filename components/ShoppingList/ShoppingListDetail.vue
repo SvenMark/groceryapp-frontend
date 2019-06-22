@@ -56,6 +56,8 @@
           <ShoppingListDetailItem :id="id" :shoppingItem="shoppingItem" :key="shoppingItem.id" @done="done($event)" @destroy="destroy($event)"/>
         </template>
       </v-slide-y-transition>
+      <v-list-tile :key="id" v-if="shoppingItems.length > 5 && limit !== 0"><v-spacer/> And {{shoppingItems.length - limit}} more!</v-list-tile>
+
     </v-card>
   </v-container>
 </template>
