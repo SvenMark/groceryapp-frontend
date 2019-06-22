@@ -47,7 +47,7 @@
         class="py-0"
         group
       >
-        <template v-for="(shoppingItem, i) in shoppingItems">
+        <template v-for="(shoppingItem, i) in limitShoppingItems">
           <v-divider
             v-if="i !== 0"
             :key="`${i}-divider`"
@@ -68,6 +68,11 @@
     props: {
       id: {
         required: true,
+      },
+      limit: {
+        required: false,
+        type: Number,
+        default: 0,
       }
     },
     data: () => ({
@@ -88,6 +93,10 @@
       },
       remainingShoppingItems() {
         return this.shoppingItems.length - this.completedShoppingItems
+      },
+      limitShoppingItems() {
+        if (this.limit === 0) return this.shoppingItems;
+        return this.shoppingItems.slice(0, this.limit);
       }
     },
 
