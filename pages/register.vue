@@ -11,7 +11,7 @@
               <v-text-field prepend-icon="email" name="login" label="Login" type="text" v-model="email"></v-text-field>
               <v-text-field prepend-icon="lock" name="password" label="Password" id="password"
                             type="password" v-model="password"></v-text-field>
-              <v-text-field prepend-icon="lock" name="password" label="Password" id="password"
+              <v-text-field prepend-icon="lock" name="confirmation_password" label="Confirm Password" id="confirmation_password"
                             type="password" v-model="passwordConfirm"></v-text-field>
             </v-form>
           </v-card-text>
