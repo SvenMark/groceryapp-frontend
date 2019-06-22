@@ -5,9 +5,15 @@ export default (ctx, inject) => {
   const authenticationRepository = createAuthenticationRepository(ctx.$axios);
   const shoppingListsRepository = createShoppingListsRepository(ctx.$axios);
 
+  ctx.$axios.defaults.baseURL = 'http://localhost:8000';
+
+  if (process.env.NODE_ENV === 'production') {
+    ctx.$axios.defaults.baseURL = 'https://api.testenv.nl';
+  }
+
   const repositories = {
-    authentication: authenticationRepository('http://127.0.0.1:8000/auth'),
-    shoppingLists: shoppingListsRepository('http://127.0.0.1:8000')
+    authentication: authenticationRepository('auth'),
+    shoppingLists: shoppingListsRepository('')
   };
 
   inject('repos', repositories);
