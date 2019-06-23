@@ -10,15 +10,9 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-import ShoppingList from "../../components/ShoppingList/ShoppingList";
+  import ShoppingList from "../../components/ShoppingList/ShoppingList";
 
-export default {
-  components: {
-    ShoppingList,
-    Logo,
-    VuetifyLogo
+  export default {
+    components: {ShoppingList}
   }
-}
 </script>

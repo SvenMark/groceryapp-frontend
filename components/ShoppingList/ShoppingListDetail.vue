@@ -110,7 +110,6 @@
       async create() {
         if (this.shoppingItem === null) return;
         const item = await this.$repos.shoppingLists.itemsAdd(this.id, {description: this.shoppingItem});
-        console.log(item);
         this.shoppingItems.unshift(item);
 
         this.shoppingItem = null

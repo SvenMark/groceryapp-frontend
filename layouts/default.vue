@@ -62,7 +62,8 @@
         drawer: null,
         items: [
           {icon: 'dashboard', title: 'Dashboard', to: '/'},
-          {icon: 'list', title: 'Shopping Lists', to: '/shoppinglists/'}
+          {icon: 'list', title: 'Shopping Lists', to: '/shoppinglists/'},
+          {icon: 'list', title: 'Templates', to: '/templates/'},
         ],
         miniVariant: false,
         title: 'Groceryapp'
