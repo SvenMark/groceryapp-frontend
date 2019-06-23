@@ -1,5 +1,6 @@
 <template>
   <v-container grid-list-md>
+    <h1 class="ma-2">Shopping lists</h1>
     <v-text-field
       v-model="shoppingList"
       label="Give your new list a name"
@@ -16,6 +17,8 @@
         </v-icon>
       </v-fade-transition>
     </v-text-field>
+
+    <v-progress-linear indeterminate v-if="loadingLists"></v-progress-linear>
 
     <v-divider class="mt-3"></v-divider>
 
@@ -48,7 +51,7 @@
     </v-layout>
 
     <v-layout row wrap>
-      <v-flex xs4 v-for="shoppingList in shoppingLists" :key="shoppingList.id">
+      <v-flex xs12 md6 lg4 v-for="shoppingList in shoppingLists" :key="shoppingList.id">
         <ShoppingListCard :shopping-list="shoppingList" @destroy="destroyList($event)"/>
       </v-flex>
     </v-layout>

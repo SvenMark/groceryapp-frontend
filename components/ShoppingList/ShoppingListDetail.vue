@@ -110,18 +110,15 @@
       async create() {
         if (this.shoppingItem === null) return;
         const item = await this.$repos.shoppingLists.itemsAdd(this.id, {description: this.shoppingItem});
-        console.log(item);
         this.shoppingItems.unshift(item);
 
         this.shoppingItem = null
       },
       async done(item) {
-        console.log('done');
         const self = this;
         await self.$repos.shoppingLists.itemsEdit(self.id, item);
       },
       async destroy(item) {
-        console.log('destroy');
         const self = this;
         await self.$repos.shoppingLists.itemsDestroy(self.id, item);
         const index = self.shoppingItems.findIndex(c => c.id === item.id);
