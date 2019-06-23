@@ -22,6 +22,9 @@ export default $axios => resource => ({
   },
   itemsDestroy(id, item) {
     return $axios.$delete(`${resource}/shoppinglists/${id}/shoppingitems/${item.id}/`)
+  },
+  toTemplate(id, item) {
+    return $axios.$post(`${resource}/shoppinglists/${id}/to_template/`, item)
   }
 
 });

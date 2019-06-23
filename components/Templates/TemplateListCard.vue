@@ -6,7 +6,7 @@
     </v-card-text>
     <v-card-actions>
       <v-btn @click="gotToTemplate">Go to template</v-btn>
-      <v-btn @click="makeList" color="info">To list</v-btn>
+      <TemplateConvertToListDialog :id="template.id"/>
       <v-btn @click="destroy" color="error">Delete template</v-btn>
     </v-card-actions>
   </v-card>
@@ -14,9 +14,10 @@
 
 <script>
   import TemplateListDetail from "./TemplateListDetail";
+  import TemplateConvertToListDialog from "./TemplateConvertToListDialog";
   export default {
     name: "TemplateListCard",
-    components: {TemplateListDetail},
+    components: {TemplateConvertToListDialog, TemplateListDetail},
     props: {
       template: {
         required: true,

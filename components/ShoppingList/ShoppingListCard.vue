@@ -6,7 +6,7 @@
     </v-card-text>
     <v-card-actions>
       <v-btn @click="goToList">Go to list</v-btn>
-      <v-btn @click="makeTemplate" color="info">To template</v-btn>
+      <ShoppingListConvertToTemplateDialog :id="shoppingList.id"/>
       <v-btn @click="destroy" color="error">Delete list</v-btn>
     </v-card-actions>
   </v-card>
@@ -14,10 +14,11 @@
 
 <script>
   import ShoppingListDetail from "./ShoppingListDetail";
+  import ShoppingListConvertToTemplateDialog from "./ShoppingListConvertToTemplateDialog";
 
   export default {
     name: "ShoppingListCard",
-    components: {ShoppingListDetail},
+    components: {ShoppingListConvertToTemplateDialog, ShoppingListDetail},
     props: {
       shoppingList: {
         required: true,
@@ -32,11 +33,6 @@
       goToList() {
         const self = this;
         self.$router.push(`/shoppinglists/${self.shoppingList.id}`)
-      },
-      makeTemplate() {
-        // @todo popup for the name of the template to make
-        // self.$repos.shoppingLists.toTemplate(self.shoppingList.id);
-        console.log('making template')
       },
       destroy() {
         const self = this;
