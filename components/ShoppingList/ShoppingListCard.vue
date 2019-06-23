@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card height="100%">
     <v-card-title primary-title class="display-1 pl-3">{{ shoppingList.name }}</v-card-title>
     <v-card-text>
       <ShoppingListDetail :limit="itemsOnPreview" :id="shoppingList.id"/>
