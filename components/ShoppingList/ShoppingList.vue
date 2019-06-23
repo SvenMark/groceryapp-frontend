@@ -48,7 +48,7 @@
     </v-layout>
 
     <v-layout row wrap>
-      <v-flex xs4 v-for="shoppingList in shoppingLists" :key="shoppingList.id">
+      <v-flex xs12 md6 lg6 v-for="shoppingList in shoppingLists" :key="shoppingList.id">
         <ShoppingListCard :shopping-list="shoppingList" @destroy="destroyList($event)"/>
       </v-flex>
     </v-layout>
