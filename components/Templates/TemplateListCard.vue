@@ -1,20 +1,26 @@
 <template>
   <v-card>
-    <v-card-title class="display-1 success--text pl-3">{{ template.name }}</v-card-title>
-    <v-card-text>
-      <TemplateListDetail :limit="templatesOnPreview" :id="template.id"/>
-    </v-card-text>
-    <v-card-actions>
-      <v-btn @click="gotToTemplate">Go to template</v-btn>
-      <TemplateConvertToListDialog :id="template.id"/>
-      <v-btn @click="destroy" color="error">Delete template</v-btn>
-    </v-card-actions>
+      <v-card-title primary-title class="display-1 pl-3">{{ template.name }}</v-card-title>
+      <v-card-text>
+        <TemplateListDetail :limit="templatesOnPreview" :id="template.id"/>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn icon @click="gotToTemplate">
+          <v-icon large>view_list</v-icon>
+        </v-btn>
+        <TemplateConvertToListDialog :id="template.id"/>
+        <v-btn icon @click="destroy" color="error">
+          <v-icon large>remove</v-icon>
+        </v-btn>
+      </v-card-actions>
   </v-card>
+
 </template>
 
 <script>
   import TemplateListDetail from "./TemplateListDetail";
   import TemplateConvertToListDialog from "./TemplateConvertToListDialog";
+
   export default {
     name: "TemplateListCard",
     components: {TemplateConvertToListDialog, TemplateListDetail},

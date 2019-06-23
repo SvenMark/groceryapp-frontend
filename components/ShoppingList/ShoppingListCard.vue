@@ -1,13 +1,13 @@
 <template>
   <v-card>
-    <v-card-title class="display-1 success--text pl-3">{{ shoppingList.name }}</v-card-title>
+    <v-card-title primary-title class="display-1 pl-3">{{ shoppingList.name }}</v-card-title>
     <v-card-text>
       <ShoppingListDetail :limit="itemsOnPreview" :id="shoppingList.id"/>
     </v-card-text>
     <v-card-actions>
-      <v-btn @click="goToList">To list</v-btn>
+      <v-btn icon @click="goToList"><v-icon large>view_list</v-icon></v-btn>
       <ShoppingListConvertToTemplateDialog :id="shoppingList.id"/>
-      <v-btn @click="destroy" color="error">Delete list</v-btn>
+      <v-btn icon @click="destroy" color="error"><v-icon large>remove</v-icon></v-btn>
     </v-card-actions>
   </v-card>
 </template>
