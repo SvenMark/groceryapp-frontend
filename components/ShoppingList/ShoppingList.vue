@@ -1,5 +1,6 @@
 <template>
   <v-container grid-list-md>
+    <h1 class="ma-2">Shopping lists</h1>
     <v-text-field
       v-model="shoppingList"
       label="Give your new list a name"

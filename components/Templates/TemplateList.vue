@@ -1,5 +1,6 @@
 <template>
   <v-container grid-list-md>
+    <h1 class="ma-2">Templates</h1>
     <v-text-field
       v-model="template"
       label="Give your new template a name"
