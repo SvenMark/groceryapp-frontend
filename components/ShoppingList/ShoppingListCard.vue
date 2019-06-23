@@ -5,7 +5,7 @@
       <ShoppingListDetail :limit="itemsOnPreview" :id="shoppingList.id"/>
     </v-card-text>
     <v-card-actions>
-      <v-btn @click="goToList">Go to list</v-btn>
+      <v-btn @click="goToList">To list</v-btn>
       <ShoppingListConvertToTemplateDialog :id="shoppingList.id"/>
       <v-btn @click="destroy" color="error">Delete list</v-btn>
     </v-card-actions>

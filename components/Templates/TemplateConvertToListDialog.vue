@@ -2,7 +2,7 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="info" dark v-on="on">To list</v-btn>
+        <v-btn color="info" dark v-on="on">List</v-btn>
       </template>
       <v-card>
         <v-card-title>
