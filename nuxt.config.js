@@ -46,6 +46,7 @@ module.exports = {
     '@/plugins/vuetify',
     '@/plugins/firebase',
     '@/plugins/repository',
+    '@/plugins/sentry',
   ],
 
   /*
