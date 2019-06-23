@@ -48,7 +48,7 @@
     </v-layout>
 
     <v-layout row wrap>
-      <v-flex xs4 v-for="template in templates" :key="template.id">
+      <v-flex xs12 md6 lg6 v-for="template in templates" :key="template.id">
         <TemplateListCard :template="template" @destroy="destroyTemplate($event)"/>
       </v-flex>
     </v-layout>
