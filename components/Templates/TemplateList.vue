@@ -17,6 +17,8 @@
       </v-fade-transition>
     </v-text-field>
 
+    <v-progress-linear indeterminate v-if="loadingTemplates"></v-progress-linear>
+
     <v-divider class="mt-3"></v-divider>
 
     <v-layout
@@ -48,7 +50,7 @@
     </v-layout>
 
     <v-layout row wrap>
-      <v-flex xs12 md6 lg6 v-for="template in templates" :key="template.id">
+      <v-flex xs12 md6 lg4 v-for="template in templates" :key="template.id">
         <TemplateListCard :template="template" @destroy="destroyTemplate($event)"/>
       </v-flex>
     </v-layout>

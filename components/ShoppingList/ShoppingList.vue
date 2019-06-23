@@ -17,6 +17,8 @@
       </v-fade-transition>
     </v-text-field>
 
+    <v-progress-linear indeterminate v-if="loadingLists"></v-progress-linear>
+
     <v-divider class="mt-3"></v-divider>
 
     <v-layout
@@ -48,7 +50,7 @@
     </v-layout>
 
     <v-layout row wrap>
-      <v-flex xs12 md6 lg6 v-for="shoppingList in shoppingLists" :key="shoppingList.id">
+      <v-flex xs12 md6 lg4 v-for="shoppingList in shoppingLists" :key="shoppingList.id">
         <ShoppingListCard :shopping-list="shoppingList" @destroy="destroyList($event)"/>
       </v-flex>
     </v-layout>

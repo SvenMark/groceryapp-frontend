@@ -115,12 +115,10 @@
         this.shoppingItem = null
       },
       async done(item) {
-        console.log('done');
         const self = this;
         await self.$repos.shoppingLists.itemsEdit(self.id, item);
       },
       async destroy(item) {
-        console.log('destroy');
         const self = this;
         await self.$repos.shoppingLists.itemsDestroy(self.id, item);
         const index = self.shoppingItems.findIndex(c => c.id === item.id);
